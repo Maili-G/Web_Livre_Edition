@@ -16,6 +16,12 @@ class Utilisateur(
     var adressePostal : String,
     val dateCreation : LocalDate,
     //commande: MutableList<Commande>
+
+    //Association avec Role (Utilisateur est le maitre de l'association)
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    var role: Role? = null
 ){
 
 }

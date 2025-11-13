@@ -8,6 +8,12 @@ class Role(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     val id : Int?,
-    val nom : String
+    val nom : String,
+
+    //Association avec Utilisateur
+
+    @OneToMany(mappedBy = "utilisateur", cascade = [CascadeType.ALL], orphanRemoval = true)
+
+    var utilisateur : MutableList<Utilisateur> = mutableListOf()
 ) {
 }
