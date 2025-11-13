@@ -1,7 +1,13 @@
 package org.ldv.web_livre_edition.model.entity
 
+import jakarta.persistence.*
+
+@Entity
 class Role(
-    id : Int?,
-    nom : String
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    val id : Int?,
+    val nom : String
 ) {
 }

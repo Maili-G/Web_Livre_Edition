@@ -1,13 +1,19 @@
 package org.ldv.web_livre_edition.model.entity
 
-import ch.qos.logback.core.net.server.Client
 import java.time.LocalDate
+import jakarta.persistence.*
 
+
+@Entity
 class Commande(
-    id : Int?,
-    numero : Int,
-    dateCommande : LocalDate,
-    statut : String,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+
+    val id : Int?,
+    val numero : Int,
+    val dateCommande : LocalDate,
+    var statut : String,
     //client: Utilisateur
 ) {
 }
