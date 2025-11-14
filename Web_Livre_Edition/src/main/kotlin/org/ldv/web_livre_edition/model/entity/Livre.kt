@@ -14,6 +14,7 @@ class Livre(
     val titre : String,
     val auteur : String,
     val datePublication : LocalDate,
+    @Column(unique = true)
     val synopsis : String,
     val image : String,
     var prix : Float,
@@ -35,7 +36,11 @@ class Livre(
         joinColumns = [JoinColumn(name = "livre_id")],
         inverseJoinColumns = [JoinColumn(name = "genre_id")]
     )
-    var genres: MutableList<Genre> = mutableListOf()
+    var genres: MutableList<Genre> = mutableListOf(),
+
+    //Association One to Many avec LigneCommande
+    @OneToMany(mappedBy = "livre", orphanRemoval = true)
+    var ligneCommandes : MutableList<LigneCommande> = mutableListOf()
 
 ) {
 }

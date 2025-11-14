@@ -18,7 +18,11 @@ class Commande(
 
     //Association avec Utilisateur (Commande est le maitre de l'association)
     @ManyToOne
-    @JoinColumn(name = "utlisateur_fkid")
-    var utilisateur: Utilisateur? = null
+    @JoinColumn(name = "utilisateur_fkid")
+    var utilisateur: Utilisateur? = null,
+
+    //Association One to Many avec LigneCommande
+    @OneToMany(mappedBy = "commande", orphanRemoval = true)
+    var ligneCommandes : MutableList<LigneCommande> = mutableListOf()
 ) {
 }

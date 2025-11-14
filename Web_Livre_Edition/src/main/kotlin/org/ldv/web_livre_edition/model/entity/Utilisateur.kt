@@ -18,7 +18,6 @@ class Utilisateur(
     //commande: MutableList<Commande>
 
     //Association avec Role (Utilisateur est le maitre de l'association)
-
     @ManyToOne
     @JoinColumn(name = "role_fkid")
     var role: Role? = null,

@@ -18,7 +18,7 @@ class Commentaire(
     //Association avec Utilisateur (Commentaire est le maitre de l'association)
 
     @ManyToOne
-    @JoinColumn(name = "utlisateur_fkid")
+    @JoinColumn(name = "utilisateur_fkid")
     var utilisateur: Utilisateur? = null,
 
     //Association avec Livre (Commentaire est le maitre de l'association)
