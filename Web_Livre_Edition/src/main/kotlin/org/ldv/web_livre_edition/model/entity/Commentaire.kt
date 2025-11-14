@@ -13,6 +13,18 @@ class Commentaire(
     val id : Int?,
     var commentaire : String,
     val datePublication : LocalDate,
-    var dateModification : LocalDate
+    var dateModification : LocalDate,
+
+    //Association avec Utilisateur (Commentaire est le maitre de l'association)
+
+    @ManyToOne
+    @JoinColumn(name = "utlisateur_fkid")
+    var utilisateur: Utilisateur? = null,
+
+    //Association avec Livre (Commentaire est le maitre de l'association)
+
+    @ManyToOne
+    @JoinColumn(name = "livre_fkid")
+    var livre: Livre? = null
 ) {
 }

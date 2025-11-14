@@ -15,5 +15,10 @@ class Commande(
     val dateCommande : LocalDate,
     var statut : String,
     //client: Utilisateur
+
+    //Association avec Utilisateur (Commande est le maitre de l'association)
+    @ManyToOne
+    @JoinColumn(name = "utlisateur_fkid")
+    var utilisateur: Utilisateur? = null
 ) {
 }

@@ -12,8 +12,7 @@ class Role(
 
     //Association avec Utilisateur
 
-    @OneToMany(mappedBy = "utilisateur", cascade = [CascadeType.ALL], orphanRemoval = true)
-
-    var utilisateur : MutableList<Utilisateur> = mutableListOf()
+    @OneToMany(mappedBy = "role", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var utilisateurs : MutableList<Utilisateur> = mutableListOf()
 ) {
 }

@@ -20,8 +20,20 @@ class Utilisateur(
     //Association avec Role (Utilisateur est le maitre de l'association)
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    var role: Role? = null
+    @JoinColumn(name = "role_fkid")
+    var role: Role? = null,
+
+    // Association avec Commande
+    @OneToMany(mappedBy = "utilisateur", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var commandes : MutableList<Commande> = mutableListOf(),
+
+    // Association avec Commentaire
+    @OneToMany(mappedBy = "utilisateur", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var commentaires : MutableList<Commentaire> = mutableListOf(),
+
+    // Association avec Livre
+    @OneToMany(mappedBy = "utilisateur", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var livres : MutableList<Livre> = mutableListOf()
 ){
 
 }

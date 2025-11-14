@@ -18,5 +18,24 @@ class Livre(
     val image : String,
     var prix : Float,
     //listeGenre: MutableList<Genre>
+
+    //Association avec Utilisateur (Livre est le maitre de l'association)
+    @ManyToOne
+    @JoinColumn(name = "utlisateur_fkid")
+    var utilisateur: Utilisateur? = null,
+
+    // Association avec Commentaire
+    @OneToMany(mappedBy = "livre", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var commentaires : MutableList<Commentaire> = mutableListOf(),
+
+    //Association Many to Many avec Genre
+    @ManyToMany
+    @JoinTable(
+        name = "livre_genre",
+        joinColumns = [JoinColumn(name = "livre_id")],
+        inverseJoinColumns = [JoinColumn(name = "genre_id")]
+    )
+    var genres: MutableList<Genre> = mutableListOf()
+
 ) {
 }

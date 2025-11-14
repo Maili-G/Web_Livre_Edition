@@ -12,5 +12,10 @@ class Genre(
     val nom : String,
     var nombreLivre : Int,
     //listeLivres : MutableList<Livre>
+
+    //Association Many to Many avec Livre
+    @ManyToMany(mappedBy = "genres")
+    var livres: MutableList<Livre> = mutableListOf()
+
 ) {
 }
