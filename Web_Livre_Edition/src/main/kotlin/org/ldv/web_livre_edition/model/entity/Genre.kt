@@ -8,9 +8,9 @@ class Genre(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
 
-    val id : Int,
+    val id : Int?=null,
     val nom : String,
-    var nombreLivre : Int,
+    //var nombreLivre : Int,
     //listeLivres : MutableList<Livre>
 
     //Association Many to Many avec Livre

@@ -1,7 +1,5 @@
 package org.ldv.web_livre_edition.model.entity
 
-import java.time.LocalDate
-
 import jakarta.persistence.*
 
 @Entity
@@ -10,14 +8,14 @@ class Livre(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
 
-    val id : Int?,
-    val titre : String,
-    val auteur : String,
-    val datePublication : LocalDate,
-    @Column(unique = true)
-    val synopsis : String,
-    val image : String,
-    var prix : Float,
+    val id: Int?,
+    val titre: String,
+    val auteur: String,
+    val datePublication: String,
+    @Column(length = 1500)
+    val synopsis: String,
+    val image: String?,
+    var prix: Double,
     //listeGenre: MutableList<Genre>
 
     //Association avec Utilisateur (Livre est le maitre de l'association)
@@ -27,7 +25,7 @@ class Livre(
 
     // Association avec Commentaire
     @OneToMany(mappedBy = "livre", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var commentaires : MutableList<Commentaire> = mutableListOf(),
+    var commentaires: MutableList<Commentaire> = mutableListOf(),
 
     //Association Many to Many avec Genre
     @ManyToMany
@@ -40,7 +38,7 @@ class Livre(
 
     //Association One to Many avec LigneCommande
     @OneToMany(mappedBy = "livre", orphanRemoval = true)
-    var ligneCommandes : MutableList<LigneCommande> = mutableListOf()
+    var ligneCommandes: MutableList<LigneCommande> = mutableListOf()
 
 ) {
 }
