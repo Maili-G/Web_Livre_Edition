@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping
 
 @Controller
 class AdminLivreController(val livreDAO: LivreDAO) {
-    @GetMapping("/web_livre-edition/admin/livres")
+    @GetMapping("/web_livre_edition/admin/livres")
     fun index(model : Model): String{
         var livresList = livreDAO.findAll()
         model.addAttribute("livres",livresList)

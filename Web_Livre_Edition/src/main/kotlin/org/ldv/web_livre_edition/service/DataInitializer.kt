@@ -1,9 +1,16 @@
-package org.ldv.web_livre_edition.model.entity
+package org.ldv.web_livre_edition.service
 
 import org.ldv.web_livre_edition.model.dao.CommentaireDAO
 import org.ldv.web_livre_edition.model.dao.GenreDAO
 import org.ldv.web_livre_edition.model.dao.LivreDAO
+import org.ldv.web_livre_edition.model.dao.RoleDAO
+import org.ldv.web_livre_edition.model.dao.UtilisateurDAO
+import org.ldv.web_livre_edition.model.entity.Genre
+import org.ldv.web_livre_edition.model.entity.Livre
+import org.ldv.web_livre_edition.model.entity.Role
+import org.ldv.web_livre_edition.model.entity.Utilisateur
 import org.springframework.boot.CommandLineRunner
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
@@ -11,10 +18,48 @@ import org.springframework.stereotype.Component
 class DataInitializer (
     private val genreDAO: GenreDAO,
     private  val livreDAO: LivreDAO,
-    private val commentaireDAO: CommentaireDAO
-) : CommandLineRunner{
+    private val commentaireDAO: CommentaireDAO,
+    val roleDAO: RoleDAO,
+    val utilisateurDAO: UtilisateurDAO,
+    val passwordEncoder: PasswordEncoder
+) : CommandLineRunner {
+
 
     override fun run (vararg args : String?){
+
+        // ROLE
+        val roleAdmin = Role(
+            nom = "ADMIN"
+        )
+
+        val roleClient = Role(
+            nom = "CLIENT"
+        )
+
+        roleDAO.saveAll(listOf(roleAdmin, roleClient))
+
+        val admin = Utilisateur(
+            id = null,
+            nom = "Super",
+            prenom = "Admin",
+            email = "admin@admin.com",
+            adressePostal = "1 rue Edouard Branly",
+            mdp = passwordEncoder.encode("admin123"), // mot de passe hashé
+            role = roleAdmin
+        )
+
+        val client = Utilisateur(
+            id = null,
+            nom = "Jean",
+            prenom = "Client",
+            email = "client@client.com",
+            adressePostal = "2 rue Edouard Branly",
+            mdp = passwordEncoder.encode("client123"), // mot de passe hashé
+            role = roleClient,
+        )
+
+        utilisateurDAO.saveAll(listOf(admin, client))
+
 
         // Vérifie si la base contient déjà des données
         if (genreDAO.count() > 0 || livreDAO.count() > 0 || commentaireDAO.count() > 0) {
@@ -53,7 +98,7 @@ class DataInitializer (
             image = "Images/Masked-man.jpg",
             prix = 20.90,
             genres = mutableListOf(genreRomance)
-            )
+        )
 
         val TaraDuncan1 = Livre(
             id = null,

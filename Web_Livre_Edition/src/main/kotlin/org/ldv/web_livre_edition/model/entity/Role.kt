@@ -7,7 +7,7 @@ class Role(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    val id : Int?,
+    val id : Int? = null,
     val nom : String,
 
     //Association avec Utilisateur
