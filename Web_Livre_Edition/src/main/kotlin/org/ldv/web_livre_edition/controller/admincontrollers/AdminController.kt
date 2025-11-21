@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping
 
 @Controller
 class AdminController {
-    @GetMapping("/Web_Livre_Edition/admin")
+    @GetMapping("/web_livre_edition/admin")
     fun home(): String{
         return "pageAdmin/dashboard"
     }

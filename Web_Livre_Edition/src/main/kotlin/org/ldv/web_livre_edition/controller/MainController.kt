@@ -12,7 +12,7 @@ class MainController (){
      * @return le chemin vers le template
      * a partir du dossier ressources/templates (on ne marque pas le .html)
      */
-    @GetMapping("/web_livre_edition/")
+    @GetMapping("/web_livre_edition")
     fun home():String{
         return "index"
     }

@@ -25,11 +25,11 @@ class SecurityConfig {
             .csrf { it.disable() } //TODO Retirer cette ligne
             //Restriction des endpoints en fonction du role
             .authorizeHttpRequests {
-                it.requestMatchers("/web_livre_edition/", "/web_livre_edition/register", "/web_livre_edition/login", "/css/**", "/js/**", "/img/**", "/favicon.ico").permitAll()
+                it.requestMatchers("/**","/web_livre_edition/", "/web_livre_edition/register", "/web_livre_edition/login", "/css/**", "/js/**", "/img/**", "/favicon.ico").permitAll()
                     // Autoriser l'accès pour les utilisateurs avec le rôle "ADMIN" à /admin/**
-                    .requestMatchers("/web_livre_edition/admin/**").hasRole("ADMIN")
+                    //.requestMatchers("/web_livre_edition/admin/**").hasRole("ADMIN")
                     // Autoriser l'accès pour les utilisateurs avec le rôle "CLIENT" à /client/**
-                    .requestMatchers("/web_livre_edition/client/**").hasRole("CLIENT")
+                    //.requestMatchers("/web_livre_edition/client/**").hasRole("CLIENT")
                     // Toutes les autres requêtes doivent être authentifiées
                     .anyRequest().authenticated()
 
@@ -38,6 +38,7 @@ class SecurityConfig {
             .formLogin { form: FormLoginConfigurer<HttpSecurity?> ->
                 form
                     .loginPage("/web_livre_edition/login").defaultSuccessUrl("/web_livre_edition/profil").failureUrl("/web_livre_edition/login?error=true")
+                    .loginProcessingUrl("/web_livre_edition/login")
                     .permitAll()
             }
 
