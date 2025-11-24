@@ -1,6 +1,7 @@
 package org.ldv.web_livre_edition.model.entity
 
 import jakarta.persistence.*
+import java.awt.Image
 
 @Entity
 class Livre(
@@ -41,4 +42,5 @@ class Livre(
     var ligneCommandes: MutableList<LigneCommande> = mutableListOf()
 
 ) {
+
 }

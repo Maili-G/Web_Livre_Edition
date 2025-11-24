@@ -4,6 +4,7 @@
     <main class="py-5">
         <div class="container">
             <h1 class="mb-5 text-center">Gestion des Livres</h1>
+            <a href="/web_livre_edition/admin" class="btn btn-secondary">Retour</a>
                 <p>Nombre de livres : <span th:text="${livres.size()}"></span></p>
             <a href="" class="btn btn-success"> + Livre</a>
             <table class="table table-striped">
@@ -25,7 +26,7 @@
                     <td th:text="${livre.datePublication}"></td>
                     <td th:text="${livre.prix} + '€'"></td>
                     <td>
-                        <a href="" class="btn btn-primary">Afficher</a>
+                        <a th:href="@{'/web_livre_edition/admin/livres/' +${livre.id}}" class="btn btn-primary">Afficher</a>
                         <a href="" class="btn btn-warning">Modifier</a>
                     </td>
                 </tr>
