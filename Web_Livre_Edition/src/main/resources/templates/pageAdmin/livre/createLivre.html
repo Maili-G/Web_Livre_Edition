@@ -1,10 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!doctype html>
+<html th:replace="base :: html" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="content">
+    <main class="py-5">
+        <div class="container">
+            <h1 class="mb-5 text-center">Création nouveau livre</h1>
+            <form th:object="${livre}" action="" method="post">
+                <div class="row">
+                <div class="my-2 mx-auto col-5">
+                    <div class="mb-2">
+                        <label for="inputTitre"> Saisir le titre : </label>
+                        <input required id="inputTitre" th:field="*{titre}" type="text" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="inputAuteur">Saisir l'auteur : </label>
+                        <input required id="inputAuteur" th:field="*{auteur}" type="text" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="inputDatePublication">Saisir la date de publication : </label>
+                        <input required id="inputDatePublication" th:field="*{datePublication}" type="text" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="inputSynopsis">Saisir le synopsis</label>
+                        <textarea required minlength="2" maxlength="500" class="form-control" th:field="*{synopsis}" id="inputSynopsis" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label for="inputImage">Saisir le lien de l'image : </label>
+                        <input required id="inputImage" th:field="*{image}" type="text" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="inputPrix">Saisir le prix : </label>
+                        <input required min="0" max="999" id="inputPrix" th:field="*{prix}" type="number" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="genres">Choisir le genre</label>
+                        <select required multiple th:field="*{genres}" id="genres">
+                            <option disabled value="">Choisir le ou les genres</option>
+                            <option th:each="unGenre : ${genres}" th:value="${unGenre.id}" th:text="${unGenre.nom}"></option>
+                        </select>
+                    </div>
 
-</body>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                    <a th:href="@{/web_livre_edition/admin/livres}" type="submit" class="btn btn-secondary">Retour</a>
+
+                </div>
+                </div>
+            </form>
+
+        </div>
+    </main>
+</div>
+
+
 </html>
